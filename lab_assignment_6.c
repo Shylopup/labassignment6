@@ -1,8 +1,26 @@
 #include <stdio.h>
+//git remote set-url origin [insert your url]
+//git add lab_assignment_6.c
+//git commit -m "completed search function" (and other messages)
+//git push
+//submit link to repository
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	//binary search
+	if (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (numbers[mid] == value) {
+            return mid;  // Value found
+        } else if (numbers[mid] < value) {
+            return search(numbers, mid + 1, high, value);  // Search in the right half
+        } else {
+            return search(numbers, low, mid - 1, value);  // Search in the left half
+        }
+    }
+
+    return -1;  // Value not found
 }
 
 void printArray(int numbers[], int sz)
